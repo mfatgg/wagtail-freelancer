@@ -111,7 +111,7 @@ MIDDLEWARE = [
 
     'oscar.apps.basket.middleware.BasketMiddleware',
 
-    'wagtail.core.middleware.SiteMiddleware',
+    #'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
 ]
 
