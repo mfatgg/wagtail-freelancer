@@ -1,4 +1,4 @@
-#Django>=2.0,<2.1
+Django>=2.2,<2.3
 wagtail>=2.12,<2.13
 django-widget-tweaks
 django-environ==0.4.5
