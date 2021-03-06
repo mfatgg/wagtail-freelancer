@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import environ
 import os
 
+from django.utils.translation import ugettext_lazy as _
+from oscar.defaults import *  # noqa
+
 BASE_DIR = environ.Path(__file__) - 3
 PROJECT_DIR = BASE_DIR.path('wagtail_freelancer')
 
@@ -27,28 +30,74 @@ INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
-    'django.contrib.sessions',
+    'django.contrib.flatpages',
     'django.contrib.messages',
+    'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.staticfiles',
 
-
+    'wagtail.admin',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
-    'wagtail.embeds',
-    'wagtail.sites',
-    'wagtail.users',
-    'wagtail.snippets',
-    'wagtail.documents',
-    'wagtail.images',
-    'wagtail.admin',
     'wagtail.core',
+    'wagtail.documents',
+    'wagtail.embeds',
+    'wagtail.images',
+    'wagtail.search',
+    'wagtail.sites',
+    'wagtail.snippets',
+    'wagtail.users',
 
     'modelcluster',
     'taggit',
     'widget_tweaks',
 
+    'config',
     'freelancer',
+    'wagtail_freelancer',
+
+    'django_tables2',
+    'haystack',
+    'sorl.thumbnail',
+    'treebeard',
+    #'oscar',
+    'oscar.apps.address',
+    'oscar.apps.analytics',
+    'oscar.apps.basket',
+    'oscar.apps.catalogue',
+    'oscar.apps.catalogue.reviews',
+    'oscar.apps.checkout',
+    'oscar.apps.customer',
+    'oscar.apps.offer',
+    'oscar.apps.order',
+    'oscar.apps.partner',
+    'oscar.apps.payment',
+    'oscar.apps.search',
+    'oscar.apps.shipping',
+    'oscar.apps.voucher',
+    'oscar.apps.wishlists',
+    'oscar_promotions.apps.PromotionsConfig',
+    'oscar.apps.dashboard',
+    'oscar.apps.dashboard.catalogue',
+    'oscar.apps.dashboard.communications',
+    'oscar.apps.dashboard.offers',
+    'oscar.apps.dashboard.orders',
+    'oscar.apps.dashboard.pages',
+    'oscar.apps.dashboard.partners',
+    'oscar.apps.dashboard.ranges',
+    'oscar.apps.dashboard.reports',
+    'oscar.apps.dashboard.reviews',
+    'oscar.apps.dashboard.shipping',
+    'oscar.apps.dashboard.users',
+    'oscar.apps.dashboard.vouchers',
+    'oscar_promotions.dashboard.apps.PromotionsDashboardConfig',
 ]
+
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        'ENGINE': 'haystack.backends.simple_backend.SimpleEngine',
+    },
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -58,6 +107,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
+
+    'oscar.apps.basket.middleware.BasketMiddleware',
 
     'wagtail.core.middleware.SiteMiddleware',
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
@@ -74,11 +126,19 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
                 'django.contrib.messages.context_processors.messages',
                 # 'wagtailmenus.context_processors.wagtailmenus',
+
+                'oscar.apps.search.context_processors.search_form',
+                'oscar_promotions.context_processors.promotions',
+                'oscar.apps.checkout.context_processors.checkout',
+                'oscar.apps.customer.notifications.context_processors.notifications',
+                'oscar.core.context_processors.metadata',
             ],
         },
     },
@@ -146,3 +206,24 @@ WAGTAIL_SITE_NAME = "wagtail_freelancer"
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 BASE_URL = 'http://example.com'
+
+
+# OSCAR SETTINGS
+
+OSCAR_DASHBOARD_NAVIGATION = [
+    {
+        'label': _('Wagtail CMS'),
+        'icon': 'icon-book',
+        'url_name': 'wagtailadmin_home',
+        'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff
+    },
+] + OSCAR_DASHBOARD_NAVIGATION  # noqa
+
+OSCAR_DASHBOARD_NAVIGATION.insert(1, {
+    'label': 'CMS',
+    'icon': 'icon-th-list',
+    'url_name': 'wagtailadmin_home',
+    'access_fn': lambda user, *args: user.has_perm('wagtailadmin.access_admin')
+})
+
+SITE_ID = 1
