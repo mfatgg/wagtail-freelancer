@@ -1,4 +1,4 @@
-{% load static i18n category_tags wagtailcore_tags wagtailuserbar wagtailimages_tags widget_tweaks %}
+{% load static i18n category_tags product_overview_tags thumbnail wagtailcore_tags wagtailuserbar wagtailimages_tags widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,6 +43,9 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-0 mx-lg-1">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#categories">Shop Categories</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#products">Shop products</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
@@ -101,6 +104,29 @@
                     {% for n in tree_category.num_to_close %}
                         </ul></li>
                     {% endfor %}
+            {% endfor %}
+        {% endif %}
+    </div>
+</section>
+
+<!-- Product Section -->
+<section id="products">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Shop Products</h2>
+        <hr class="star-dark mb-5">
+        <div class="row">
+        {% all_products as products %}
+        {% if products %}
+            {% for product in products|slice:"12" %}
+
+                <div class="col-md-4 col-lg-2">
+                    <a class="d-block mx-auto" href="{{ product.get_absolute_url }}">
+                        {% thumbnail product.primary_image.original "x155" upscale=False as thumb %}
+                        <img src="{{ thumb.url }}" alt="{{ product.get_title }}" />
+                        {% endthumbnail %}
+                    </a>
+                </div>
+
             {% endfor %}
         {% endif %}
     </div>
