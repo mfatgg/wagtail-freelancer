@@ -42,7 +42,7 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#categories">Categories</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#categories">Shop Categories</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
@@ -82,26 +82,26 @@
 <!-- Category Section -->
 <section id="categories">
     <div class="container">
-        <h2 class="text-center text-uppercase text-secondary mb-0">Categories</h2>
+        <h2 class="text-center text-uppercase text-secondary mb-0">Shop Categories</h2>
         <hr class="star-dark mb-5">
         {% category_tree as tree_categories %}
         {% if tree_categories %}
             <h3>{% trans "Show results for" %}</h4>
-                    {% for tree_category in tree_categories %}
-                        <li class="mt-2">
-                            <a href="{{ tree_category.url }}">
-                                {% if tree_category.pk == category.pk %}
-                                    <strong>{{ tree_category.name }}</strong>
-                                {% else %}
-                                    {{ tree_category.name }}
-                                {% endif %}
-                            </a>
+            {% for tree_category in tree_categories %}
+                <li class="mt-2">
+                    <a href="{{ tree_category.url }}">
+                        {% if tree_category.pk == category.pk %}
+                            <strong>{{ tree_category.name }}</strong>
+                        {% else %}
+                            {{ tree_category.name }}
+                        {% endif %}
+                    </a>
 
-                            {% if tree_category.has_children %}<ul>{% else %}</li>{% endif %}
-                            {% for n in tree_category.num_to_close %}
-                                </ul></li>
-                            {% endfor %}
+                    {% if tree_category.has_children %}<ul>{% else %}</li>{% endif %}
+                    {% for n in tree_category.num_to_close %}
+                        </ul></li>
                     {% endfor %}
+            {% endfor %}
         {% endif %}
     </div>
 </section>
