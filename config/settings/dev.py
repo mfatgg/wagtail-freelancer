@@ -12,6 +12,9 @@ ADMINS = (
     ('Michael Yin', 'admin@michaelyin.info'),
 )
 
+STATIC_ROOT = "/staticfiles"
+MEDIA_ROOT = "/mediafiles"
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 ALLOWED_HOSTS = ['*']
