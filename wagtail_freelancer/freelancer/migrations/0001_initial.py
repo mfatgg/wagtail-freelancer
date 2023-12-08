@@ -3,8 +3,8 @@
 import django.db.models.deletion
 from django.db import migrations, models
 
-import wagtail.core.blocks
-import wagtail.core.fields
+import wagtail.blocks
+import wagtail.fields
 import wagtail.images.blocks
 
 import modelcluster.fields
@@ -42,8 +42,8 @@ class Migration(migrations.Migration):
             fields=[
                 ('page_ptr', models.OneToOneField(auto_created=True, on_delete=django.db.models.deletion.CASCADE, parent_link=True, primary_key=True, serialize=False, to='wagtailcore.Page')),
                 ('subtitle', models.CharField(blank=True, max_length=100)),
-                ('portfolio', wagtail.core.fields.StreamField([('portfolio', wagtail.core.blocks.StructBlock([('heading', wagtail.core.blocks.CharBlock(classname='full title')), ('image', wagtail.images.blocks.ImageChooserBlock()), ('intro', wagtail.core.blocks.RichTextBlock())]))], blank=True, null=True)),
-                ('about_text', wagtail.core.fields.RichTextField(blank=True)),
+                ('portfolio', wagtail.fields.StreamField([('portfolio', wagtail.blocks.StructBlock([('heading', wagtail.blocks.CharBlock(classname='full title')), ('image', wagtail.images.blocks.ImageChooserBlock()), ('intro', wagtail.blocks.RichTextBlock())]))], blank=True, null=True)),
+                ('about_text', wagtail.fields.RichTextField(blank=True)),
                 ('about_CTA_text', models.CharField(blank=True, max_length=100)),
                 ('about_CTA_link', models.URLField(blank=True)),
                 ('hero_image', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='+', to='wagtailimages.Image')),

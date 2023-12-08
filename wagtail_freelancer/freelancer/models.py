@@ -1,11 +1,11 @@
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 
-from wagtail.admin.edit_handlers import (FieldPanel,
+from wagtail.admin.panels import (FieldPanel,
                                          InlinePanel, MultiFieldPanel,
                                          StreamFieldPanel)
 from wagtail.contrib.forms.models import AbstractForm, AbstractFormField
-from wagtail.core.fields import RichTextField, StreamField
+from wagtail.fields import RichTextField, StreamField
 from wagtail.images.edit_handlers import ImageChooserPanel
 
 from freelancer.blocks import PortfolioBlock

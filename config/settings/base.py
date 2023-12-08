@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import environ
 import os
 
-from django.utils.translation import ugettext_lazy as _
+from django.utils.translation import gettext_lazy as _
 from oscar.defaults import *  # noqa
 
 BASE_DIR = environ.Path(__file__) - 3
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'wagtail.admin',
     'wagtail.contrib.forms',
     'wagtail.contrib.redirects',
-    'wagtail.core',
+    'wagtail',
     'wagtail.documents',
     'wagtail.embeds',
     'wagtail.images',
@@ -203,7 +203,7 @@ WAGTAIL_SITE_NAME = "wagtail_freelancer"
 
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
-BASE_URL = 'http://example.com'
+WAGTAILADMIN_BASE_URL = 'http://example.com'
 
 
 # OSCAR SETTINGS
@@ -225,3 +225,8 @@ OSCAR_DASHBOARD_NAVIGATION.insert(1, {
 })
 
 SITE_ID = 1
+
+
+# DJANGO >=3.2
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
