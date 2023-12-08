@@ -2,11 +2,9 @@ from django.db import models
 from django.utils.translation import gettext_lazy as _
 
 from wagtail.admin.panels import (FieldPanel,
-                                         InlinePanel, MultiFieldPanel,
-                                         StreamFieldPanel)
+                                         InlinePanel, MultiFieldPanel)
 from wagtail.contrib.forms.models import AbstractForm, AbstractFormField
 from wagtail.fields import RichTextField, StreamField
-from wagtail.images.edit_handlers import ImageChooserPanel
 
 from freelancer.blocks import PortfolioBlock
 from modelcluster.fields import ParentalKey
@@ -28,7 +26,7 @@ class FreelancerPage(AbstractForm):
 
     portfolio = StreamField([
         ('portfolio', PortfolioBlock()),
-    ], null=True, blank=True)
+    ], null=True, blank=True, use_json_field=True)
 
     about_text = RichTextField(blank=True)
     about_CTA_text = models.CharField(max_length=100, blank=True)
@@ -37,10 +35,10 @@ class FreelancerPage(AbstractForm):
     content_panels = AbstractForm.content_panels + [
         MultiFieldPanel([
             FieldPanel('subtitle'),
-            ImageChooserPanel('profile_image'),
+            FieldPanel('profile_image'),
         ], "Hero"),
 
-        StreamFieldPanel('portfolio'),
+        FieldPanel('portfolio'),
 
         MultiFieldPanel([
             FieldPanel('about_text', classname="full"),
