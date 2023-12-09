@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'wagtail_freelancer',
 
     #'oscar.config.Shop',
+    'config.shop.Shop',
     'oscar.apps.analytics.apps.AnalyticsConfig',
     'oscar.apps.checkout.apps.CheckoutConfig',
     'oscar.apps.address.apps.AddressConfig',
@@ -96,6 +97,13 @@ INSTALLED_APPS = [
     'treebeard',
     'sorl.thumbnail',   # Default thumbnail backend, can be replaced
     'django_tables2',
+
+    # Django apps that the sandbox depends on
+    'django.contrib.sitemaps',
+
+    # 3rd-party apps that the sandbox depends on
+    'django_extensions',
+    'debug_toolbar',
 ]
 
 HAYSTACK_CONNECTIONS = {
@@ -105,6 +113,7 @@ HAYSTACK_CONNECTIONS = {
 }
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
