@@ -1,5 +1,5 @@
 Django>=4.2,<4.3
-wagtail>=5.1,<5.2
+wagtail>=5.2,<5.3
 
 # Django Oscar
 django-oscar>=3.2,<3.3
