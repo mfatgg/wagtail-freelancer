@@ -12,3 +12,6 @@ node_modules*
 /None
 *.log
 db.*
+.env
+.bash_history
+media/cache/
