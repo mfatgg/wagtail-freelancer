@@ -114,15 +114,22 @@ HAYSTACK_CONNECTIONS = {
 
 MIDDLEWARE = [
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
 
+    # Allow languages to be selected
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.http.ConditionalGetMiddleware',
+    'django.middleware.common.CommonMiddleware',
+
+    # Ensure a valid basket is added to the request instance for every request
     'oscar.apps.basket.middleware.BasketMiddleware',
 
     'wagtail.contrib.redirects.middleware.RedirectMiddleware',
@@ -225,13 +232,6 @@ OSCAR_DASHBOARD_NAVIGATION = [
         'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff
     },
 ] + OSCAR_DASHBOARD_NAVIGATION  # noqa
-
-OSCAR_DASHBOARD_NAVIGATION.insert(1, {
-    'label': 'CMS',
-    'icon': 'icon-th-list',
-    'url_name': 'wagtailadmin_home',
-    'access_fn': lambda user, *args: user.has_perm('wagtailadmin.access_admin')
-})
 
 SITE_ID = 1
 
