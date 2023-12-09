@@ -1,10 +1,10 @@
 [
 {
-    "model": "promotions.pagepromotion",
+    "model": "oscar_promotions.pagepromotion",
     "pk": 4,
     "fields": {
         "content_type": [
-            "promotions",
+            "oscar_promotions",
             "rawhtml"
         ],
         "object_id": 1,
@@ -12,15 +12,15 @@
         "display_order": 0,
         "clicks": 0,
         "date_created": "2014-05-06T10:31:06.444Z",
-        "page_url": "/en-gb/"
+        "page_url": "/"
     }
 },
 {
-    "model": "promotions.pagepromotion",
+    "model": "oscar_promotions.pagepromotion",
     "pk": 5,
     "fields": {
         "content_type": [
-            "promotions",
+            "oscar_promotions",
             "singleproduct"
         ],
         "object_id": 1,
@@ -28,15 +28,15 @@
         "display_order": 0,
         "clicks": 0,
         "date_created": "2014-05-06T10:31:23.577Z",
-        "page_url": "/en-gb/"
+        "page_url": "/"
     }
 },
 {
-    "model": "promotions.pagepromotion",
+    "model": "oscar_promotions.pagepromotion",
     "pk": 6,
     "fields": {
         "content_type": [
-            "promotions",
+            "oscar_promotions",
             "handpickedproductlist"
         ],
         "object_id": 1,
@@ -44,11 +44,11 @@
         "display_order": 0,
         "clicks": 0,
         "date_created": "2014-05-06T10:31:55.034Z",
-        "page_url": "/en-gb/"
+        "page_url": "/"
     }
 },
 {
-    "model": "promotions.rawhtml",
+    "model": "oscar_promotions.rawhtml",
     "pk": 1,
     "fields": {
         "name": "Welcome!",
@@ -58,7 +58,7 @@
     }
 },
 {
-    "model": "promotions.singleproduct",
+    "model": "oscar_promotions.singleproduct",
     "pk": 1,
     "fields": {
         "name": "Recommended reading",
@@ -68,7 +68,7 @@
     }
 },
 {
-    "model": "promotions.handpickedproductlist",
+    "model": "oscar_promotions.handpickedproductlist",
     "pk": 1,
     "fields": {
         "name": "Other good books",
@@ -79,7 +79,7 @@
     }
 },
 {
-    "model": "promotions.orderedproduct",
+    "model": "oscar_promotions.orderedproduct",
     "pk": 1,
     "fields": {
         "list": 1,
@@ -88,7 +88,7 @@
     }
 },
 {
-    "model": "promotions.orderedproduct",
+    "model": "oscar_promotions.orderedproduct",
     "pk": 2,
     "fields": {
         "list": 1,
@@ -97,7 +97,7 @@
     }
 },
 {
-    "model": "promotions.orderedproduct",
+    "model": "oscar_promotions.orderedproduct",
     "pk": 3,
     "fields": {
         "list": 1,
@@ -106,7 +106,7 @@
     }
 },
 {
-    "model": "promotions.orderedproduct",
+    "model": "oscar_promotions.orderedproduct",
     "pk": 4,
     "fields": {
         "list": 1,

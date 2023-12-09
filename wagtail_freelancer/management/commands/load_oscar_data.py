@@ -24,15 +24,20 @@ class Command(BaseCommand):
         ]
 
         json_files = [
-            os.path.join(fixtures_dir, 'pages.json'),
             os.path.join(fixtures_dir, 'auth.json'),
+            os.path.join(fixtures_dir, 'pages.json'),
             os.path.join(fixtures_dir, 'ranges.json'),
             os.path.join(fixtures_dir, 'offers.json'),
+            os.path.join(fixtures_dir, 'promotions.json'),
         ]
 
         call_command('loaddata', products_file, verbosity=0)
         call_command('oscar_import_catalogue', *csv_files, verbosity=0)
         call_command('oscar_import_catalogue_images', image_src, verbosity=0)
-        call_command('oscar_populate_countries', verbosity=0)
+        call_command('oscar_populate_countries', initial_only=True, verbosity=0)
         call_command('loaddata', *json_files, verbosity=0)
         call_command('loaddata', orders_file, verbosity=0)
+
+        call_command('clear_index', interactive=False)
+        call_command('update_index')
+        call_command('thumbnail', 'cleanup')

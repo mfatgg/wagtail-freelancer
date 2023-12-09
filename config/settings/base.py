@@ -224,14 +224,23 @@ WAGTAILADMIN_BASE_URL = 'http://example.com'
 
 # OSCAR SETTINGS
 
-OSCAR_DASHBOARD_NAVIGATION = [
+OSCAR_DASHBOARD_NAVIGATION[5]['children'] += [
     {
-        'label': _('Wagtail CMS'),
-        'icon': 'icon-book',
-        'url_name': 'wagtailadmin_home',
-        'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff
+        'label': 'Content blocks',
+        'url_name': 'oscar_promotions_dashboard:promotion-list',
     },
-] + OSCAR_DASHBOARD_NAVIGATION  # noqa
+    {
+        'label': 'Content blocks by page',
+        'url_name': 'oscar_promotions_dashboard:promotion-list-by-page',
+    },
+]
+
+OSCAR_DASHBOARD_NAVIGATION.insert(0, {
+    'label': _('CMS'),
+    'icon': 'icon-book',
+    'url_name': 'wagtailadmin_home',
+    'access_fn': lambda user, url_name, url_args, url_kwargs: user.is_staff
+})
 
 SITE_ID = 1
 

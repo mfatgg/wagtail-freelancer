@@ -21,6 +21,10 @@ urlpatterns = [
     # For anything not caught by a more specific rule above, hand over to
     # Oscar's then Wagtail's serving mechanism. This should be the last
     # pattern in the list:
+
+    # FIXME: Oscar Promotions need home page adaption to work (also in app)!
+    #path('', apps.get_app_config('oscar_promotions').urls),
+    path('dashboard/promotions/', apps.get_app_config('oscar_promotions_dashboard').urls),
     path('', include(apps.get_app_config('oscar').urls[0])),
     path('', include(wagtail_urls)),
 
