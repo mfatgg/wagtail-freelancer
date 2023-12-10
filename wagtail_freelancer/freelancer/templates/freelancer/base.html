@@ -1,4 +1,4 @@
-{% load static i18n category_tags product_overview_tags thumbnail wagtailcore_tags wagtailuserbar wagtailimages_tags widget_tweaks %}
+{% load static i18n category_tags product_overview_tags promotion_tags thumbnail wagtailcore_tags wagtailuserbar wagtailimages_tags widget_tweaks %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -45,7 +45,10 @@
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#categories">Shop Categories</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
-                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#products">Shop products</a>
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#products">Shop Products</a>
+                </li>
+                <li class="nav-item mx-0 mx-lg-1">
+                    <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#promotions">Shop Promotions</a>
                 </li>
                 <li class="nav-item mx-0 mx-lg-1">
                     <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#portfolio">Portfolio</a>
@@ -127,6 +130,21 @@
                     </a>
                 </div>
 
+            {% endfor %}
+        {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- Promotions Section -->
+<section id="promotions">
+    <div class="container">
+        <h2 class="text-center text-uppercase text-secondary mb-0">Shop Promotions</h2>
+        <hr class="star-dark mb-5">
+        {% all_promotions as promotions %}
+        {% if promotions %}
+            {% for promotion in promotions %}
+            {% render_promotion promotion %}
             {% endfor %}
         {% endif %}
     </div>

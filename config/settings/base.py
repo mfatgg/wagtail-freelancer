@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'wagtail_freelancer',
 
     #'oscar.config.Shop',
-    'config.shop.Shop',
+    'config.shop.ShopConfig',
     'oscar.apps.analytics.apps.AnalyticsConfig',
     'oscar.apps.checkout.apps.CheckoutConfig',
     'oscar.apps.address.apps.AddressConfig',
@@ -88,7 +88,7 @@ INSTALLED_APPS = [
     'oscar.apps.dashboard.vouchers.apps.VouchersDashboardConfig',
     'oscar.apps.dashboard.communications.apps.CommunicationsDashboardConfig',
     'oscar.apps.dashboard.shipping.apps.ShippingDashboardConfig',
-    'oscar_promotions.apps.PromotionsConfig',
+    'config.shop.PromotionsConfig',
     'oscar_promotions.dashboard.apps.PromotionsDashboardConfig',
 
     # 3rd-party apps that oscar depends on
