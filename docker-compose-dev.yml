@@ -6,6 +6,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile-dev
+      network: host
     container_name: web4${COMPOSE_PROJECT_NAME}
     command: python /app/manage.py runserver 0.0.0.0:8000
     volumes:
