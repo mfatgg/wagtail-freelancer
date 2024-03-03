@@ -17,6 +17,7 @@ help:
 	@echo -e "\n$(WHITE)Available commands:$(COFF)"
 	@echo -e "$(CYAN)make build-dev$(COFF)        - Builds development images"
 	@echo -e "$(CYAN)make collectstatic-dev$(COFF)  - Runs the Django's collectstatic command in development"
+	@echo -e "$(CYAN)make createsuperuser-dev$(COFF)  - Runs the Django's createsuperuser command in development"
 	@echo -e "$(CYAN)make load-oscar-data$(COFF)   - Loads initial data from Django Oscar app's fixtures"
 	@echo -e "$(CYAN)make load-user-data$(COFF)   - Loads initial data from Django user accounts app's fixtures"
 	@echo -e "$(CYAN)make logs-dev$(COFF)        - Shows the logs for the django development app"
@@ -35,6 +36,10 @@ build-dev:
 collectstatic-dev:
 	@echo -e "$(CYAN)Running django collectstatic in develoment:$(COFF)"
 	@docker-compose -f docker-compose-dev.yml run --rm web python ./manage.py collectstatic $(cmd)
+
+createsuperuser-dev:
+	@echo -e "$(CYAN)Running django createsuperuser in develoment:$(COFF)"
+	@docker-compose -f docker-compose-dev.yml run --rm web python ./manage.py createsuperuser $(cmd)
 
 deploy-media-dev:
 	@echo -e "$(CYAN)Deploy media data from local dir:$(COFF)"
